@@ -1,16 +1,14 @@
 package com.company.dao.impl;
 
-import com.company.dao.AbstractDao;
-import com.company.dao.inter.UserDaoInter;
+import com.company.dao.inter.AbstractDao;
 import com.company.entity.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl extends AbstractDao implements com.company.dao.inter.UserDaoInter {
+public class UserDaoImplJDBC extends AbstractDao implements com.company.dao.inter.UserDaoInter {
 
-        public User getUser(ResultSet rs) throws Exception{
+        public User getUser(ResultSet rs) throws Exception{//JPQL
             int id = rs.getInt("id");
             String name = rs.getString("name");
             String surname = rs.getString("surname");
@@ -18,7 +16,7 @@ public class UserDaoImpl extends AbstractDao implements com.company.dao.inter.Us
             String password = rs.getString("password");
             int active = rs.getInt("active");
 
-            return new User(id, name, surname, email, password, active);
+            return new User(id, name, surname, email, password, active==1);
         }
 
         @Override
@@ -45,7 +43,8 @@ public class UserDaoImpl extends AbstractDao implements com.company.dao.inter.Us
         List<User> result = new ArrayList<>();
         try(Connection c = connect()) {//try-with-resources
             String sql = "select * from user where name=?";
-
+                
+            
             PreparedStatement stmt = c.prepareStatement(sql);//encode
             stmt.setString(1,name);
             ResultSet rs = stmt.executeQuery();
@@ -83,19 +82,32 @@ public class UserDaoImpl extends AbstractDao implements com.company.dao.inter.Us
 
     @Override
     public void add(User u){
-        try(Connection c = connect()){
-
+        Connection c = null;
+            try {
+                c = connect();
+            } catch (Exception ex) {
+               ex.printStackTrace();
+            }
+        try{
+            c.setAutoCommit(false);
             String sql = "insert into user(name,surname,email,password, active) values(?,?,?,?,?)";
             PreparedStatement stmt= c.prepareStatement(sql);
             stmt.setString(1,u.getName());
             stmt.setString(2,u.getSurname());
             stmt.setString(3,u.getEmail());
             stmt.setString(4,u.getPassword());
-            stmt.setInt(5,u.getActive());
+            stmt.setInt(5,u.getActive()==true?1:0);
 
-            stmt.execute(sql);
+            stmt.execute(sql);//xeta bash verdi
+            
+            c.commit();
         }catch (Exception ex){
             ex.printStackTrace();
+            try {
+                c.rollback();
+            } catch (SQLException ex1) {
+                ex1.printStackTrace();
+            }
         }
 
     }
@@ -110,7 +122,7 @@ public class UserDaoImpl extends AbstractDao implements com.company.dao.inter.Us
             stmt.setString(2,u.getSurname());
             stmt.setString(3,u.getEmail());
             stmt.setString(4,u.getPassword());
-            stmt.setInt(5,u.getActive());
+            stmt.setInt(5,u.getActive()==true?1:0);
             stmt.setInt(6,u.getId());
 
             stmt.execute();
