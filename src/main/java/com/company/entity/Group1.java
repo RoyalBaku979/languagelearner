@@ -112,7 +112,7 @@ public class Group1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.company.entity.Group1[ id=" + id + " ]";
+        return "id="+id+ " name="+name;
     }
     
 }

@@ -128,7 +128,7 @@ public class Language implements Serializable {
 
     @Override
     public String toString() {
-        return "com.company.entity.Language[ id=" + id + " ]";
+        return "id="+id+ ", name="+name;
     }
     
 }

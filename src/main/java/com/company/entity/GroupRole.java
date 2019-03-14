@@ -98,7 +98,7 @@ public class GroupRole implements Serializable {
 
     @Override
     public String toString() {
-        return "com.company.entity.GroupRole[ id=" + id + " ]";
+        return "id="+ id+", group="+groupId.getName()+", role="+roleId.getName();
     }
     
 }
