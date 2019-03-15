@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.company.entity;
 
 import java.io.Serializable;
@@ -41,7 +37,7 @@ public class UserLanguage implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "level")
-    private boolean level;
+    private int level;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User userId;
@@ -56,7 +52,7 @@ public class UserLanguage implements Serializable {
         this.id = id;
     }
 
-    public UserLanguage(Integer id, boolean level) {
+    public UserLanguage(Integer id, int level) {
         this.id = id;
         this.level = level;
     }
@@ -69,11 +65,11 @@ public class UserLanguage implements Serializable {
         this.id = id;
     }
 
-    public boolean getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(boolean level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -115,7 +111,7 @@ public class UserLanguage implements Serializable {
 
     @Override
     public String toString() {
-        return "com.company.entity.UserLanguage[ id=" + id + " ]";
+        return "user name="+userId.getName()+ " language="+languageId.getName();
     }
     
 }

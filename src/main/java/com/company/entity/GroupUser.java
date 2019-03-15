@@ -98,7 +98,7 @@ public class GroupUser implements Serializable {
 
     @Override
     public String toString() {
-        return "com.company.entity.GroupUser[ id=" + id + " ]";
+        return "id="+ id +", group="+groupId.getName()+", user="+userId.getName();
     }
     
 }

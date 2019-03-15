@@ -179,7 +179,7 @@ public class Wordlist implements Serializable {
 
     @Override
     public String toString() {
-        return "id="+id+",word="+word;
+        return "id="+id+",word="+word+", translation="+translation;
     }
     
 }
