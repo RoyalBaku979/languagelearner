@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/languagelearnerdb.iml" filepath="$PROJECT_DIR$/languagelearnerdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/languagelearnerdb/languagelearner.iml" filepath="$PROJECT_DIR$/languagelearnerdb/languagelearner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/languagelearnerwebappnew/languagelearnerwebapp.iml" filepath="$PROJECT_DIR$/languagelearnerwebappnew/languagelearnerwebapp.iml" />
     </modules>
   </component>
 </project>
