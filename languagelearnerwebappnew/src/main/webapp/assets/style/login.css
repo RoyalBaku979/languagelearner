@@ -1,0 +1,37 @@
+.textInput {
+    border: 1px solid #cecece;border-radius: 2px;
+    width: 100%;
+}
+
+#buttonInput {
+    border-radius: 0px;
+    padding: 4px;
+    margin: 5px 0px 0px 0px;
+    background-color: #6dbbf5;
+    color: white;
+    border: 0px;
+    width: 100%;
+}
+
+.loginContainer {
+    margin: 0 auto;
+    width:16%
+}
+
+.loginContainer h1{
+    text-align: center;
+    font-size: 60%;
+}
+
+.inputContainer {
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+    .col-sm-4 {
+        width: 100%;
+        margin: 0 auto;
+        color: red;
+    }
+}
