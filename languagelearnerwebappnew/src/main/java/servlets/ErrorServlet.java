@@ -5,10 +5,6 @@ package servlets;
  * and open the template in the editor.
  */
 
-import com.company.Context;
-import com.company.dao.inter.UserDaoInter;
-import com.company.entity.User;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,13 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author sarkhanrasullu
  */
-@WebServlet(urlPatterns = {"/UserServlet"})
-public class UserServlet extends HttpServlet {
-
-    private UserDaoInter userDao = Context.instanceUserDao();
+@WebServlet(urlPatterns = {"/error"})
+public class ErrorServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,14 +28,10 @@ public class UserServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserServlet</title>");            
+            out.println("<title>Error</title>");
             out.println("</head>");
             out.println("<body>");
-            List<User> users = userDao.getAll();
-            for(int i=0;i<users.size();i++) {
-                User u = users.get(i);
-                out.println("<h1>"+u.getName()+" "+u.getSurname()+"</h1>");
-            }
+            out.println(request.getParameter("msg"));
             out.println("</body>");
             out.println("</html>");
         }
@@ -54,22 +43,5 @@ public class UserServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("You requested to post");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
 }

@@ -144,4 +144,10 @@ public class UserDaoImplJDBC extends AbstractDao implements com.company.dao.inte
         }
 
     }
+
+    @Override
+    public User getByEmail(String email) {
+
+        return null;
+    }
 }

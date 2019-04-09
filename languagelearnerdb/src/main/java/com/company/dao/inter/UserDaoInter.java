@@ -17,4 +17,6 @@ public interface UserDaoInter {
     public void update(User u);
 
     public void remove(User u);
+
+    public User getByEmail(String email);
 }

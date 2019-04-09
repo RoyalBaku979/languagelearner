@@ -72,4 +72,18 @@ public class UserDaoImplJPA extends AbstractDao implements UserDaoInter {
         em.getTransaction().commit();
         em.close();
     }
+
+    @Override
+    public User getByEmail(String email) {
+        EntityManager em = em();
+        Query query = em.createQuery("select u from User u where u.email = :email");
+        query.setParameter("email", email);
+        List<User> list = query.getResultList();//sql
+
+        em.close();
+        if(list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
 }
