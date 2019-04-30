@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script>
+
+            function getUsers() {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var responseStr = this.responseText;
+
+                        var menimMassivim = JSON.parse(responseStr);
+                        var containerHTML = '';
+                        for(var i=0;i<menimMassivim.length;i++){
+                            var user = menimMassivim[i];
+                            containerHTML +=
+                                "<tr>" +
+                                    "<td>"+user.id+"</td>" +
+                                    "<td>"+user.name+"</td>" +
+                                    "<td>"+user.surname+"</td>" +
+                                "</tr>";
+                        }
+
+                        var containerTbody = document.getElementById("container");
+                        containerTbody.innerHTML = containerHTML;
+
+                    }
+                };
+                xmlhttp.open("GET", "http://localhost:8085/languagelearnerwebapp/rest/users", true);
+                xmlhttp.send();
+            }
+
+
+        </script>
+
+    </head>
+        <body>
+        <h2>Users</h2>
+
+        <div >
+            <button onclick="getUsers()"> RELOAD</button>
+            <table style="text-align: left">
+                <thead>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>surname</th>
+                </thead>
+                <tbody id="container">
+
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
