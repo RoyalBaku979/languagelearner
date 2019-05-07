@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="languagelearner_restful_client:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="languagelearner_restful_client.war">
+      <element id="artifact" artifact-name="languagelearner_restful_client:war exploded" />
+    </root>
+  </artifact>
+</component>

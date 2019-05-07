@@ -1,0 +1,22 @@
+package com.company.dao.impl;
+
+
+import com.company.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Repository
+@Transactional
+public interface UserDaoInter extends JpaRepository<User, Integer>, UserDaoCustom {
+
+    List<User> findByName(String ad);
+    User findByEmail(String email);
+    User findByNameAndSurname(String ad, String soyad);
+
+    @Query(value="select * from user where name = ?1", nativeQuery = true)
+    List<User> findByCustomConditions(String name);
+}
