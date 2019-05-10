@@ -11,11 +11,13 @@
                             <form action="login" method="post">
                                 <h1>Login</h1>
                                 <div class="form-group">
-                                    <input name="email" class="form-control" type="text" />
+                                    <input name="username" class="form-control" type="text" />
                                 </div>
                                 <div class="form-group">
                                     <input name="password" class="form-control" type="password" />
                                 </div>
+                                <input type="hidden" name="${_csrf.parameterName}"
+                                       value="${_csrf.token}" />
                                 <%=request.getParameter("error")!=null?"Email or password is incorrect!!!":""%>
                                 <input class="btn btn-primary" type="submit" value="Login"/>
                             </form>

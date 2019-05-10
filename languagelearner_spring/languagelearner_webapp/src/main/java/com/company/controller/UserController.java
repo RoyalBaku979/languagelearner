@@ -4,6 +4,7 @@ package com.company.controller;
 import com.company.dao.impl.UserDaoInter;
 import com.company.form.UserForm;
 import com.company.entity.User;
+import com.company.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +24,6 @@ public class UserController {
     public String getUsers(ModelMap model,
                            @RequestParam(name="name", required = false) String name,
                            @RequestParam(name="surname", required = false) String surname){
-
         List<User> users = null;
         if(name!=null && !name.trim().isEmpty()) {
             users = userDao.getAll(name);
@@ -34,6 +34,17 @@ public class UserController {
         model.addAttribute("users", users);
         return "/users";
     }
+
+    @Autowired
+    MyService service;
+
+    @GetMapping("/foo")
+    public String foo(){
+        System.out.println("foo url called");
+        service.foo();
+        return "/users";//request.forward()
+    }
+
 
     @GetMapping("/{id}/edit")
     public String editUserPage(ModelMap model,
@@ -95,4 +106,7 @@ public class UserController {
         userDao.add(user);
         return "redirect:/users";
     }
+
+
+
 }
